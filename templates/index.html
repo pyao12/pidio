@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block page_header %}
+    <h1>子域名列表</h1>
+{% endblock %}
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>子域名</th>
+                <th>记录类型</th>
+                <th>记录值</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subdomain in subdomains %}
+            <tr>
+                <td>{{ subdomain }}</td>
+                <td>{{ subdomain.record_type }}</td>
+                <td>{{ subdomain.record_value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

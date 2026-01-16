@@ -1,0 +1,2 @@
+[MASTER]
+ignore=.venv,migrations,__pycache__,manage.py
