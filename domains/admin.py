@@ -1,5 +1,3 @@
-""" 注册BaseDomain和SubDomain模型到admin站点 """
-
 from django.contrib import admin
 from domains.models import BaseDomain, SubDomain
 
