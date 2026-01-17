@@ -23,6 +23,7 @@ class SubDomain(models.Model):
     record_type = models.CharField(max_length=10, 
         choices=[("A", "A记录"), ("AAAA", "AAAA记录"), ("CNAME", "CNAME记录")], verbose_name="记录类型")
     record_value = models.CharField(max_length=255, verbose_name="记录值")
+    record_id = models.CharField(max_length=64, verbose_name="Cloudflare Record ID")
 
     def __str__(self):
         return f"{self.subdomain_name}.{self.base_domain}"

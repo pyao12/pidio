@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block page_header %}
+    <h1>创建子域名</h1>
+{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">创建</button>
+    </form>
+    <a href="{% url 'index' %}">返回列表</a>
+{% endblock %}

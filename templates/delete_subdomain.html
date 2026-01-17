@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block page_header %}
+    <h1>删除子域名</h1>
+{% endblock %}
+{% block content %}
+    <p>确定要删除子域名 <strong>{{ subdomain }}</strong> 吗？</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">删除</button>
+        <a href="{% url 'index' %}">取消</a>
+    </form>
+{% endblock %}
