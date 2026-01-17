@@ -18,7 +18,8 @@ def add_record(subdomain_name, record_type, record_value, zone_id, api_key):
             errors = response_data.get("errors", [])
             error_messages = [error.get("message", "Unknown error") for error in errors]
             return {"success": False, "error": ", ".join(error_messages)}
-        return response_data
+        record = response_data.get("result", {})
+        return {"success": True, "id": record.get("id"), "data": record}
     except requests.exceptions.RequestException as e:
         return {"success": False, "error": str(e)}
 
@@ -40,7 +41,8 @@ def edit_record(record_id, subdomain_name, record_type, record_value, zone_id, a
             errors = response_data.get("errors", [])
             error_messages = [error.get("message", "Unknown error") for error in errors]
             return {"success": False, "error": ", ".join(error_messages)}
-        return response_data
+        record = response_data.get("result", {})
+        return {"success": True, "id": record.get("id"), "data": record}
     except requests.exceptions.RequestException as e:
         return {"success": False, "error": str(e)}
 
@@ -57,6 +59,6 @@ def delete_record(record_id, zone_id, api_key):
             errors = response_data.get("errors", [])
             error_messages = [error.get("message", "Unknown error") for error in errors]
             return {"success": False, "error": ", ".join(error_messages)}
-        return response_data
+        return {"success": True}
     except requests.exceptions.RequestException as e:
         return {"success": False, "error": str(e)}

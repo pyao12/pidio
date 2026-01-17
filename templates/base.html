@@ -1,14 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="zh-hans">
+<html lang="zh-CN">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pidio</title>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
     </head>
     <body>
-        <h1>{% block page_header %}{% endblock %}</h1>
-        <div>
-            {% block content %}{% endblock %}
-        </div>
+        <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+            <div class="container">
+                <a class="navbar-brand" href="/">Pidio</a>
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text me-2">你好, {{ user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'users:logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">登出</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'users:login' %}" class="btn btn-outline-primary btn-sm">登录</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="container">
+            <div class="pb-2 mb-2 border-bottom">
+                {% block page_header %}{% endblock %}
+            </div>
+            <div>
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+        <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
     </body>
 </html>

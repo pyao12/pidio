@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
 {% block page_header %}
-    <h1>创建子域名</h1>
+    <h1>用户注册</h1>
 {% endblock %}
 {% block content %}
     <div class="card">
         <div class="card-body">
+            <h2 class="card-title text-center mb-4">创建账号</h2>
             <form method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
-                {% bootstrap_button button_type="submit" content="创建" %}
+                {% bootstrap_button button_type="submit" content="注册" %}
             </form>
+            <div class="text-center mt-3">
+                <small>已有账号？ <a href="{% url 'users:login' %}">立即登录</a></small>
+            </div>
         </div>
     </div>
-    <a href="{% url 'index' %}" class="btn btn-secondary mt-2">返回列表</a>
 {% endblock %}

@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
 {% block page_header %}
     <h1>删除子域名</h1>
 {% endblock %}
 {% block content %}
-    <p>确定要删除子域名 <strong>{{ subdomain }}</strong> 吗？</p>
+    <div class="alert alert-warning">
+        <p>确定要删除子域名 <strong>{{ subdomain }}</strong> 吗？</p>
+    </div>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">删除</button>
-        <a href="{% url 'index' %}">取消</a>
+        <button type="submit" class="btn btn-danger">删除</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary ms-2">取消</a>
     </form>
 {% endblock %}

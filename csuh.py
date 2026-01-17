@@ -1,5 +1,3 @@
-""" Create Super User Helper 通过Python脚本实现自动创建超级用户 """
-
 import os
 import sys
 import django
@@ -12,8 +10,6 @@ django.setup()
 from django.contrib.auth import get_user_model
 
 def main():
-    """ 主函数 """
-
     User = get_user_model()
     if not User.objects.filter(username="admin").exists():
         User.objects.create_superuser(

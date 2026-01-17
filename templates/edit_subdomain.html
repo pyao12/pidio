@@ -1,22 +1,25 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
 {% block page_header %}
     <h1>编辑子域名</h1>
 {% endblock %}
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <th>子域名</th>
-                <td>{{ subdomain.subdomain_name }}</td>
-            </tr>
-            <tr>
-                <th>基础域名</th>
-                <td>{{ subdomain.base_domain }}</td>
-            </tr>
-            {{ form.as_p }}
-        </table>
-        <button type="submit">保存</button>
-    </form>
-    <a href="{% url 'index' %}">返回列表</a>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">子域名</label>
+                    <input type="text" class="form-control" value="{{ subdomain.subdomain_name }}" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">基础域名</label>
+                    <input type="text" class="form-control" value="{{ subdomain.base_domain }}" disabled>
+                </div>
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="保存" %}
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'index' %}" class="btn btn-secondary mt-2">返回列表</a>
 {% endblock %}

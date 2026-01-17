@@ -3,28 +3,32 @@
     <h1>子域名列表</h1>
 {% endblock %}
 {% block content %}
-    <p><a href="{% url 'create_subdomain' %}">创建新子域名</a></p>
-    <table>
-        <thead>
-            <tr>
-                <th>子域名</th>
-                <th>记录类型</th>
-                <th>记录值</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for subdomain in subdomains %}
-            <tr>
-                <td>{{ subdomain }}</td>
-                <td>{{ subdomain.record_type }}</td>
-                <td>{{ subdomain.record_value }}</td>
-                <td>
-                    <a href="{% url 'edit_subdomain' subdomain.id %}">编辑</a>
-                    <a href="{% url 'delete_subdomain' subdomain.id %}">删除</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <p>
+        <a href="{% url 'create_subdomain' %}" class="btn btn-primary">创建新子域名</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>子域名</th>
+                    <th>记录类型</th>
+                    <th>记录值</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subdomain in subdomains %}
+                <tr>
+                    <td>{{ subdomain }}</td>
+                    <td>{{ subdomain.record_type }}</td>
+                    <td>{{ subdomain.record_value }}</td>
+                    <td>
+                        <a href="{% url 'edit_subdomain' subdomain.id %}" class="btn btn-sm btn-secondary me-1">编辑</a>
+                        <a href="{% url 'delete_subdomain' subdomain.id %}" class="btn btn-sm btn-danger">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

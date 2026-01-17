@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block page_header %}
+    <h1>登录</h1>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">登录</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="登录" %}
+            </form>
+            <div class="text-center mt-3">
+                <small>还没有账号？ <a href="{% url 'users:register' %}">立即注册</a></small>
+            </div>
+        </div>
+    </div>
+{% endblock %}
